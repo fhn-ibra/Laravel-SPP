@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/petugas', function () {
+    return view('auth.login_petugas');
 });
+
+Route::get('/', function () {
+    return view('auth.login_siswa');
+})->name('login');
+
+Route::post('/proses', [LoginController::class, 'petugas'])->name('proses-petugas');
