@@ -27,12 +27,8 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            if (Auth::user()->level == "admin") {
-                return redirect()->route('dashboard');
-            } elseif (Auth::user()->level == 'petugas') {
-                return redirect()->route('dashboard2');
-            }
+            return redirect()->route('dashboard');
+           
         }
         return redirect()->route('login-petugas')->with('error', 'Data yang dimasukkan salah!');
     }
