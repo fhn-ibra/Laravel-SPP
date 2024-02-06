@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Spp;
+use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use Illuminate\Http\Request;
@@ -25,12 +27,26 @@ class AdminController extends Controller
         ]);
     }
 
+    public function index_spp(){
+        return view('petugas.admin.spp', [
+            'title' => 'SPP',
+            'data' => Spp::all()
+        ]);
+    }
+
+    public function index_petugas(){
+        return view('petugas.admin.petugas', [
+            'title' => 'Petugas',
+            'data' => User::all()
+        ]);
+    }
+
+
     public function save_kelas(Request $request){
         $validasi = $request->validate([
             'nama_kelas' => 'required',
             'kompetensi_keahlian' => 'required'
         ]);
-
         $kelas = new Kelas();
         $kelas->nama_kelas = $request->nama_kelas;
         $kelas->kompetensi_keahlian = $request->kompetensi_keahlian;
@@ -40,10 +56,49 @@ class AdminController extends Controller
     }
 
     public function delete_kelas(Request $request){
-        $data = $request->id_kelas;
-        $akun = Kelas::where('id_kelas', $data)->get();
+        $akun = Kelas::where('id_kelas', $request->id_kelas);
         $akun->delete();
         return redirect()->route('kelas');
+    }
+
+    public function edit_kelas(Request $request){
+        $data = Kelas::where('id_kelas', $request->id_kelas);
+        $data->update([
+            'nama_kelas' => $request->nama_kelas,
+            'kompetensi_keahlian' => $request->kompetensi_keahlian
+        ]);
+
+        return redirect()->route('kelas');
+    }
+
+    public function save_spp(Request $request){
+        $validasi = $request->validate([
+            'tahun' => 'required',
+            'nominal' => 'required'
+        ]);
+
+        $spp = new Spp();
+        $spp->tahun = $request->tahun;
+        $spp->nominal = $request->nominal;
+        $spp->save();
+
+        return redirect()->route('spp');
+    }
+
+    public function delete_spp(Request $request){
+        $data = Spp::where('id_spp', $request->id_spp);
+        $data->delete();
+        return redirect()->route('spp');
+    }
+
+    public function edit_spp(Request $request){
+        $data = Spp::where('id_spp', $request->id_spp);
+        $data->update([
+            'tahun' => $request->tahun,
+            'nominal' => $request->nominal
+        ]);
+
+        return redirect()->route('spp');
     }
 
 }

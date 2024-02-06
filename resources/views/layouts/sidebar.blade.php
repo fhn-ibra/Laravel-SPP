@@ -27,26 +27,26 @@
                     </a>
                 </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('siswa') }}" class="nav-link {{ $title == 'Siswa' ? 'active' : '' }}">
-                            <i class="nav-icon fas fas fa-chalkboard-teacher"></i>
-                            <p>Siswa</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('spp') }}" class="nav-link {{ $title == 'SPP' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-file-invoice"></i>
+                        <p>SPP</p>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="{{ route('siswa') }}" class="nav-link {{ $title == 'Siswa' ? 'active' : '' }}">
+                        <i class="nav-icon fas fas fa-chalkboard-teacher"></i>
+                        <p>Siswa</p>
+                    </a>
+                </li>
 
-                    <li class="nav-item">
-                        <a href="" class="nav-link {{ $title == 'Petugas' ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-user-tie"></i>
-                            <p>Petugas</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link {{ $title == 'SPP' ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-file-invoice"></i>
-                            <p>SPP</p>
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a href="{{ route('petugas') }}" class="nav-link {{ $title == 'Petugas' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-user-tie"></i>
+                        <p>Petugas</p>
+                    </a>
+                </li>
                 @endif
 
             </ul>

@@ -31,13 +31,22 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::group(['middleware' => ['admin']], function () {
+    //index
     Route::get('/siswa', [AdminController::class, 'index_siswa'])->name('siswa');
     Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
-    // Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
-    // Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
+    Route::get('/spp', [AdminController::class, 'index_spp'])->name('spp');
+    Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
+    Route::get('/petugas', [AdminController::class, 'index_petugas'])->name('petugas');
 
+    //kelas
     Route::delete('/kelas-delete', [AdminController::class, 'delete_kelas'])->name('kelas-delete');
     Route::post('/kelas-save', [AdminController::class, 'save_kelas'])->name('kelas-save');
+    Route::post('/kelas-edit', [AdminController::class, 'edit_kelas'])->name('kelas-edit');
+
+    //spp
+    Route::delete('/spp-delete', [AdminController::class, 'delete_spp'])->name('spp-delete');
+    Route::post('/spp-save', [AdminController::class, 'save_spp'])->name('spp-save');
+    Route::post('/spp-edit', [AdminController::class, 'edit_spp'])->name('spp-edit');
 });
 
 

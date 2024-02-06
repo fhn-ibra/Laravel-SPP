@@ -11,25 +11,25 @@
         <thead>
             <tr>
                 <td width=5%>No</td>
-                <td width=23%>Nama Kelas</td>
-                <td width=42%>Jurusan</td>
+                <td width=23%>Tahun SPP</td>
+                <td width=42%>Nominal</td>
                 <td width=10%>Aksi</td>
             </tr>
         </thead>
         <?php $no = 1; ?>
-        @foreach ($data as $kelas)
+        @foreach ($data as $spp)
             <tr>
 
                 <td>{{ $no++ }}</td>
-                <td>{{ $kelas->nama_kelas }}</td>
-                <td>{{ $kelas->kompetensi_keahlian }}</td>
+                <td>{{ $spp->tahun }}</td>
+                <td>{{ $spp->nominal }}</td>
                 <td>
                     <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"
-                        data-id="{{ $kelas->id_kelas }}"><i class="fas fa-trash"></i></button>
+                        data-id="{{ $spp->id_spp }}"><i class="fas fa-trash"></i></button>
                     </form>
                     <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdit"
-                        data-id= "{{ $kelas->id_kelas }}" data-nama="{{ $kelas->nama_kelas }}"
-                        data-kom = "{{ $kelas->kompetensi_keahlian }}"><i class="fas fa-pen"></i></button>
+                        data-id= "{{ $spp->id_spp }}" data-tahun="{{ $spp->tahun }}"
+                        data-nominal = "{{ $spp->nominal }}"><i class="fas fa-pen"></i></button>
                 </td>
             </tr>
         @endforeach
@@ -39,7 +39,7 @@
 @section('modal')
     <div class="modal fade" id="modalDelete" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
-            <form class="modal-content" method="post" action="{{ route('kelas-delete') }}">
+            <form class="modal-content" method="post" action="{{ route('spp-delete') }}">
                 @csrf
                 @method('delete')
                 <div class="modal-header">
@@ -50,7 +50,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <input type="hidden" name="id_kelas" id="kelasId">
+                <input type="hidden" name="id_spp" id="id">
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger" value=''>Ya</button>
                 </div>
@@ -60,11 +60,11 @@
 
     <div class="modal fade" id="modalAdd" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
-            <form class="modal-content" method="post" action="{{ route('kelas-save') }}">
+            <form class="modal-content" method="post" action="{{ route('spp-save') }}">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">
-                        Tambah Data Kelas
+                        Tambah Data SPP
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
@@ -73,12 +73,12 @@
                 <div class="modal-body">
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Kelas</label>
-                        <input type="text" class="form-control" name="nama_kelas">
+                        <label for="exampleInputEmail1">Tahun SPP</label>
+                        <input type="number" class="form-control" name="tahun">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Kompetensi Keahlian</label>
-                        <input type="text" class="form-control" name="kompetensi_keahlian">
+                        <label for="exampleInputPassword1">Nominal Harga</label>
+                        <input type="number" class="form-control" name="nominal">
                     </div>
 
                 </div>
@@ -91,26 +91,26 @@
 
     <div class="modal fade" id="modalEdit" data-backdrop="static" data-keyboard="false" tabindex="-1">
         <div class="modal-dialog modal-md">
-            <form class="modal-content" method="post" action="{{ route('kelas-edit') }}">
+            <form class="modal-content" method="post" action="{{ route('spp-edit') }}">
                 @csrf
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel">
-                        Edit Kelas
+                        Edit SPP
                     </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <input type="hidden" name="id_kelas" id="id">
+                    <input type="hidden" name="id_spp" id="id">
 
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Kelas</label>
-                        <input type="text" class="form-control" name="nama_kelas" id="nama">
+                        <label for="exampleInputEmail1">Tahun SPP</label>
+                        <input type="text" class="form-control" name="tahun" id="tahun">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Kompetensi Keahlian</label>
-                        <input type="text" class="form-control" name="kompetensi_keahlian" id="kom">
+                        <label for="exampleInputPassword1">Nominal</label>
+                        <input type="text" class="form-control" name="nominal" id="nominal">
                     </div>
 
                 </div>
@@ -128,10 +128,10 @@
         $(document).ready(function() {
             $('#modalDelete').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
-                var kelasid = button.data('id');
+                var id = button.data('id');
                 var modal = $(this);
                 modal.find('.modal-title').text('Apakah yakin ingin menghapus?');
-                modal.find('#kelasId').val(kelasid);
+                modal.find('#id').val(id);
             });
         });
 
@@ -139,12 +139,12 @@
         $('#modalEdit').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget);
             var Id = button.data('id');
-            var Nama = button.data('nama');
-            var Kom = button.data('kom');
+            var tahun = button.data('tahun');
+            var nominal = button.data('nominal');
             var modal = $(this);
             modal.find('#id').val(Id);
-            modal.find('#nama').val(Nama);
-            modal.find('#kom').val(Kom);
+            modal.find('#tahun').val(tahun);
+            modal.find('#nominal').val(nominal);
         });
     });
     </script>
