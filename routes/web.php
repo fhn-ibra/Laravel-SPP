@@ -31,6 +31,13 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 Route::group(['middleware' => ['admin']], function () {
+    Route::get('/siswa', [AdminController::class, 'index_siswa'])->name('siswa');
+    Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
+    // Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
+    // Route::get('/kelas', [AdminController::class, 'index_kelas'])->name('kelas');
+
+    Route::delete('/kelas-delete', [AdminController::class, 'delete_kelas'])->name('kelas-delete');
+    Route::post('/kelas-save', [AdminController::class, 'save_kelas'])->name('kelas-save');
 });
 
 

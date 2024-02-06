@@ -13,15 +13,22 @@
                 data-accordion="false">
 
                 <li class="nav-item">
-                    <a href="" class="nav-link {{ $title == 'Dashboard' ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ $title == 'Dashboard' ? 'active' : '' }}">
                         <i class="nav-icon fas fas fa-tachometer-alt"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
 
                 @if (Auth::user()->level == 'admin')
+                <li class="nav-item">
+                    <a href="{{ route('kelas') }}" class="nav-link {{ $title == 'Kelas' ? 'active' : '' }}">
+                        <i class="nav-icon fas fas fa-school"></i>
+                        <p>Kelas</p>
+                    </a>
+                </li>
+
                     <li class="nav-item">
-                        <a href="" class="nav-link {{ $title == 'Siswa' ? 'active' : '' }}">
+                        <a href="{{ route('siswa') }}" class="nav-link {{ $title == 'Siswa' ? 'active' : '' }}">
                             <i class="nav-icon fas fas fa-chalkboard-teacher"></i>
                             <p>Siswa</p>
                         </a>
@@ -31,13 +38,6 @@
                         <a href="" class="nav-link {{ $title == 'Petugas' ? 'active' : '' }}">
                             <i class="nav-icon fa fa-user-tie"></i>
                             <p>Petugas</p>
-                        </a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="" class="nav-link {{ $title == 'Kelas' ? 'active' : '' }}">
-                            <i class="nav-icon fas fas fa-school"></i>
-                            <p>Kelas</p>
                         </a>
                     </li>
 
