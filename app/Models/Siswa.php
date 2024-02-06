@@ -11,6 +11,10 @@ class Siswa extends Model
 
     protected $table = 'siswa';
     protected $primaryKey = 'nisn';
+
+    // protected $fillable = [
+    //     'nisn','nis','nama','id_kelas','alamat','no_telp','id_spp','_token', ];
+
     public $timestamps = false;
 
     public function pembayaran()
@@ -25,6 +29,6 @@ class Siswa extends Model
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
     }
 }

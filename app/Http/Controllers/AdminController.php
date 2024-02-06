@@ -16,14 +16,16 @@ class AdminController extends Controller
     public function index_siswa(){
         return view('petugas.admin.siswa', [
             'title' => 'Siswa',
-            'data' => Siswa::all()
+            'data' => Siswa::all(),
+            'kelas' => Kelas::all(),
+            'spp' => Spp::all()
         ]);
     }
 
     public function index_kelas(){
         return view('petugas.admin.kelas', [
             'title' => 'Kelas',
-            'data' => Kelas::all()
+            'data' => Kelas::all(),
         ]);
     }
 
@@ -99,6 +101,41 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('spp');
+    }
+
+    public function save_siswa(Request $request){
+
+        $siswa = new Siswa();
+        $siswa->nisn = $request->nisn;
+        $siswa->nis = $request->nis;
+        $siswa->nama = $request->nama;
+        $siswa->id_kelas = $request->id_kelas;
+        $siswa->alamat = $request->alamat;
+        $siswa->no_telp = $request->no_telp;
+        $siswa->id_spp = $request->id_spp;
+        $siswa->save();
+
+        return redirect()->route('siswa');
+    }
+
+    public function delete_siswa(Request $request){
+        $data = Siswa::where('nisn', $request->nisn);
+        $data->delete();
+        return redirect()->route('siswa');
+    }
+
+    public function edit_siswa(Request $request){
+        $data = Siswa::where('nisn', $request->nisn);
+        $data->update([
+            'nis' => $request->nis,
+            'nama' => $request->nama,
+            'id_kelas' => $request->id_kelas,
+            'alamat' => $request->alamat,
+            'no_telp' => $request->no_telp,
+            'id_spp' => $request->id_spp
+        ]);
+
+        return redirect()->route('siswa');
     }
 
 }

@@ -47,6 +47,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::delete('/spp-delete', [AdminController::class, 'delete_spp'])->name('spp-delete');
     Route::post('/spp-save', [AdminController::class, 'save_spp'])->name('spp-save');
     Route::post('/spp-edit', [AdminController::class, 'edit_spp'])->name('spp-edit');
+
+    //siswa
+    Route::delete('/siswa-delete', [AdminController::class, 'delete_siswa'])->name('siswa-delete');
+    Route::post('/siswa-save', [AdminController::class, 'save_siswa'])->name('siswa-save');
+    Route::post('/siswa-edit', [AdminController::class, 'edit_siswa'])->name('siswa-edit');
 });
 
 
