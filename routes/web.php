@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\PetugasController;
 
 /*
@@ -24,6 +25,9 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/prosespetugas', [LoginController::class, 'prosespetugas'])->name('proses-petugas');
 });
 
+Route::get('/siswa-index/{id}', [SiswaController::class, 'index'])->name('siswa-index');
+
+
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/pembayaran', [PetugasController::class, 'index_pembayaran'])->name('pembayaran');
@@ -31,6 +35,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::delete('/pembayaran-delete', [PetugasController::class, 'delete_pembayaran'])->name('pembayaran-delete');
     Route::post('/pembayaran-save', [PetugasController::class, 'save_pembayaran'])->name('pembayaran-save');
     Route::post('/pembayaran-edit', [PetugasController::class, 'edit_pembayaran'])->name('pembayaran-edit');
+
 
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });

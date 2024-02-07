@@ -42,7 +42,7 @@
                             <div class="form-group last mb-3">
                                 <label for="password">Nama</label>
                                 <input type="text" name="nama" class="form-control {{ $errors->has('nisn') ? 'is-invalid' : ' ' }}" placeholder="..."
-                                    id="password">
+                                    id="nama">
                             </div>
 
                             <div class="d-flex mb-5 align-items-center">

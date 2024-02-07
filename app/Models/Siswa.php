@@ -3,17 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Model;
 
-class Siswa extends Model
+class Siswa extends Model implements AuthenticatableContract
 {
-    use HasFactory;
+    use Authenticatable;
 
     protected $table = 'siswa';
     protected $primaryKey = 'nisn';
-
-    // protected $fillable = [
-    //     'nisn','nis','nama','id_kelas','alamat','no_telp','id_spp','_token', ];
 
     public $timestamps = false;
 
@@ -31,4 +30,10 @@ class Siswa extends Model
     {
         return $this->belongsTo(Kelas::class, 'id_kelas', 'id_kelas');
     }
+
+    public static function authenticate($nisn, $nama)
+    {
+        return static::where('nisn', $nisn)->where('nama', $nama)->first();
+    }
+
 }
