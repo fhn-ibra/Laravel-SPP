@@ -36,9 +36,6 @@
                     <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete"
                         data-id="{{ $data->id_pembayaran }}"><i class="fas fa-trash"></i></button>
                     </form>
-                    {{-- <button class="btn btn-warning" data-toggle="modal" data-target="#modalEdit"
-                        data-id= "{{ $data->id_spp }}" data-tahun="{{ $spp->tahun }}"
-                        data-nominal = "{{ $spp->nominal }}"><i class="fas fa-pen"></i></button> --}}
                 </td>
             </tr>
         @endforeach
@@ -106,38 +103,6 @@
                     <div class="form-group">
                         <label for="exampleInputPassword1">Jumlah Dibayar</label>
                         <input type="number" class="form-control" name="jumlah_bayar">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="modal fade" id="modalEdit" data-backdrop="static" data-keyboard="false" tabindex="-1">
-        <div class="modal-dialog modal-md">
-            <form class="modal-content" method="post" action="{{ route('spp-edit') }}">
-                @csrf
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">
-                        Edit SPP
-                    </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="id_spp" id="id">
-
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Tahun SPP</label>
-                        <input type="text" class="form-control" name="tahun" id="tahun">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Nominal</label>
-                        <input type="text" class="form-control" name="nominal" id="nominal">
                     </div>
 
                 </div>
