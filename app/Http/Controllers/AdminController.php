@@ -5,6 +5,7 @@ use App\Models\Spp;
 use App\Models\User;
 use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Pembayaran;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller

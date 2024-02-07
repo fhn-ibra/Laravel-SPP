@@ -26,6 +26,12 @@ Route::group(['middleware' => ['guest']], function () {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/pembayaran', [PetugasController::class, 'index_pembayaran'])->name('pembayaran');
+
+    Route::delete('/pembayaran-delete', [PetugasController::class, 'delete_pembayaran'])->name('pembayaran-delete');
+    Route::post('/pembayaran-save', [PetugasController::class, 'save_pembayaran'])->name('pembayaran-save');
+    Route::post('/pembayaran-edit', [PetugasController::class, 'edit_pembayaran'])->name('pembayaran-edit');
+
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
@@ -61,5 +67,5 @@ Route::group(['middleware' => ['admin']], function () {
 
 
 
-Route::group(['middleware' => ['petugas']], function () {
-});
+// Route::group(['middleware' => ['petugas']], function () {
+// });

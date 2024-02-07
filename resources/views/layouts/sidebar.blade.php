@@ -49,6 +49,13 @@
                 </li>
                 @endif
 
+                <li class="nav-item">
+                    <a href="{{ route('pembayaran') }}" class="nav-link {{ $title == 'Pembayaran' ? 'active' : '' }}">
+                        <i class="nav-icon fa fa-file-invoice-dollar"></i>
+                        <p>Pembayaran</p>
+                    </a>
+                </li>
+
             </ul>
         </nav>
 

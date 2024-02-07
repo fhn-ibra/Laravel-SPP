@@ -111,7 +111,7 @@
                         <input type="text" class="form-control" name="no_telp">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Kelas</label>
+                        <label for="exampleInputPassword1">Nominal SPP</label>
                         <select class="form-control" name="id_spp">
                             @foreach ($spp as $item)
                             <option value="{{ $item->id_spp }}">{{ $item->nominal }}</option>
@@ -167,7 +167,7 @@
                         <input type="text" class="form-control" name="no_telp" id="no_telp">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1">Kelas</label>
+                        <label for="exampleInputPassword1">Nominal SPP</label>
                         <select class="form-control" name="id_spp">
                             @foreach ($spp as $item)
                             <option value="{{ $item->id_spp }}">{{ $item->nominal }}</option>
