@@ -138,4 +138,35 @@ class AdminController extends Controller
         return redirect()->route('siswa');
     }
 
+    public function save_petugas(Request $request){
+
+
+        $petugas = new User();
+        $petugas->username = $request->username;
+        $petugas->nama_petugas = $request->nama_petugas;
+        $petugas->password = $request->password;
+        $petugas->level = $request->level;
+        $petugas->save();
+
+        return redirect()->route('petugas');
+    }
+
+    public function delete_petugas(Request $request){
+        $data = User::where('id_petugas', $request->id_petugas);
+        $data->delete();
+        return redirect()->route('petugas');
+    }
+
+    public function edit_petugas(Request $request){
+      
+        $data = User::where('id_petugas', $request->id_petugas);
+        $data->update([
+            'nama_petugas' => $request->nama,
+            'username' => $request->uname,
+            'level' => $request->level,
+        ]);
+
+        return redirect()->route('petugas');
+    }
+
 }

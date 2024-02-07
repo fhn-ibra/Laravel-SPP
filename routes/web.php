@@ -18,7 +18,7 @@ use App\Http\Controllers\PetugasController;
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/', [LoginController::class, 'indexsiswa'])->name('login');
-    Route::get('/petugas', [LoginController::class, 'indexpetugas'])->name('login-petugas');
+    Route::get('/petugas-login', [LoginController::class, 'indexpetugas'])->name('login-petugas');
 
     Route::post('/prosessiswa', [LoginController::class, 'prosessiswa'])->name('proses-siswa');
     Route::post('/prosespetugas', [LoginController::class, 'prosespetugas'])->name('proses-petugas');
@@ -52,6 +52,11 @@ Route::group(['middleware' => ['admin']], function () {
     Route::delete('/siswa-delete', [AdminController::class, 'delete_siswa'])->name('siswa-delete');
     Route::post('/siswa-save', [AdminController::class, 'save_siswa'])->name('siswa-save');
     Route::post('/siswa-edit', [AdminController::class, 'edit_siswa'])->name('siswa-edit');
+
+     //petugas
+     Route::delete('/petugas-delete', [AdminController::class, 'delete_petugas'])->name('petugas-delete');
+     Route::post('/petugas-save', [AdminController::class, 'save_petugas'])->name('petugas-save');
+     Route::post('/petugas-edit', [AdminController::class, 'edit_petugas'])->name('petugas-edit');
 });
 
 
